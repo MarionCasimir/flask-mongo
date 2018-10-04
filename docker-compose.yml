@@ -10,3 +10,5 @@ services:
       - 4000:27017
     volumes:
       - ./etc/fixtures.js:/docker-entrypoint-initdb.d/fixtures.js
+
+

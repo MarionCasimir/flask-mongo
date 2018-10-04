@@ -1,9 +1,12 @@
 from flask import Flask
 from flask_pymongo import PyMongo
 import json
+from flask import request
 
 app = Flask(__name__)
+
 app.config["MONGO_URI"] = "mongodb://root:root@localhost:4000/test_db?authSource=admin"
+
 mongo = PyMongo(app)
 
 
@@ -24,11 +27,12 @@ def get_stores():
     result_str = json.dumps(list(result)) #converts result to list > jason.dumps converts list to a jason formatted string
     return '"stores": {}'.format(result_str)
 
-@app.route('/stores/id/<int:id>') #this is forcing to enter an int for the id value
-def get_stores_by_id(id):
-    result = mongo.db.stores.find({"_id": id})
-    result_str = json.dumps(list(result))
-    return '"stores": {}'.format(result_str)
+@app.route('/stores/<int:id>') #this is forcing to enter an int for the id value
+def get_store_by_id(id):
+    result = mongo.db.stores.find_one_or_404({"_id": id})
+    result_str = json.dumps(result)
+    return '{{"stores": {}}}'.format(result_str)
+
 
 # check documentation - https://flask-pymongo.readthedocs.io/en/latest/
 
@@ -37,6 +41,12 @@ def get_users():
     result = mongo.db.users.find() #stores information from the users dd into the result variable
     result_str = json.dumps(list(result)) #converts result to list > json.dumps converts to a json formatted string
     return '"users": {}'.format(result_str)
+
+@app.route('/users/<int:id>') #this is forcing to enter an int for the id value
+def get_user_by_id(id):
+    result = mongo.db.users.find_one_or_404({"_id": id})
+    result_str = json.dumps(result)
+    return '{{"user": {}}}'.format(result_str)
 
 
 if __name__ == '__main__':

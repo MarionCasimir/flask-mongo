@@ -1,33 +1,33 @@
 db.users.insert([
   {
-    "_id": "z003f37",
+    "_id": NumberInt(000),
     "name": "Kim"
   },
   {
-    "_id": "123",
+    "_id": NumberInt(123),
     "name": "Marion"
   },
   {
-    "_id": "456",
+    "_id": NumberInt(456),
     "name": "Kelly"
   },
   {
-    "_id": "789",
+    "_id": NumberInt(789),
     "name": "Wako"
   }
 ])
 
 db.stores.insert([
   {
-    "_id": 1,
+    "_id": NumberInt(1),
     "name": "Target"
   },
   {
-    "_id": 2,
+    "_id": NumberInt(2),
     "name": "Amazon"
   },
   {
-    "_id": 3,
+    "_id": NumberInt(3),
     "name": "Walmart"
   }
 ])
