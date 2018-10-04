@@ -1,3 +1,5 @@
+//db.createUser({"user": "kim", "pwd": "kim"})
+
 db.users.insert([
   {
     "_id": NumberInt(000),
